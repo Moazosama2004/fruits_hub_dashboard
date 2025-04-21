@@ -7,6 +7,7 @@ import 'package:fruits_hub_dashboard/core/widgets/custom_button.dart';
 import 'package:fruits_hub_dashboard/core/widgets/custom_check_box.dart';
 import 'package:fruits_hub_dashboard/core/widgets/custom_text_form_field.dart';
 import 'package:fruits_hub_dashboard/core/widgets/image_field.dart';
+import 'package:fruits_hub_dashboard/features/add_product/domain/entities/add_product_input_entity.dart';
 import 'package:fruits_hub_dashboard/features/add_product/presentation/views/widgets/is_featured_box.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -78,6 +79,14 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                   if (imageFile != null) {
                     if (formkey.currentState!.validate()) {
                       formkey.currentState!.save();
+                      AddProductInputEntity inputEntity = AddProductInputEntity(
+                        name: name,
+                        code: code,
+                        description: description,
+                        price: price,
+                        image: imageFile!,
+                        isFeatured: isFeatured,
+                      );
                     } else {
                       autovalidateMode = AutovalidateMode.always;
                       setState(() {});
