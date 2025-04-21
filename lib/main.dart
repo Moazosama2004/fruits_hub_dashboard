@@ -1,7 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fruits_hub_dashboard/core/helper/on_generate_route.dart';
+import 'package:fruits_hub_dashboard/features/dashboard/presentation/views/dashboard_view.dart';
+import 'package:fruits_hub_dashboard/firebase_options.dart';
 
-void main() {
-  runApp(MainApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -9,8 +15,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(body: Center(child: Text('Hello World!'))),
+    return const MaterialApp(
+      onGenerateRoute: onGenerateRoute,
+      initialRoute: DashboardView.routeName,
     );
   }
 }
