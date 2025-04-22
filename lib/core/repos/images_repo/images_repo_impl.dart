@@ -9,8 +9,15 @@ class ImagesRepoImpl implements ImagesRepo {
 
   ImagesRepoImpl(this.storageService);
   @override
-  Future<Either<Failure, String>> uploadImage({required XFile image}) {
-    // TODO: implement uploadImage
-    throw UnimplementedError();
+  Future<Either<Failure, String>> uploadImage({required XFile image}) async {
+    try {
+      String imageUrl = await storageService.uploadFile(
+        file: image,
+        path: 'images',
+      );
+      return right(imageUrl);
+    } on Exception catch (e) {
+      return left(ServerFailure(errMessage: e.toString()));
+    }
   }
 }

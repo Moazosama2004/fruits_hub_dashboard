@@ -21,8 +21,8 @@ class AddProductView extends StatelessWidget {
       body: BlocProvider(
         create:
             (context) => AddProductCubit(
-              // getIt.get<ImagesRepo>(),
               getIt.get<ProductsRepo>(),
+              getIt.get<ImagesRepo>(),
             ),
         child: AddProductViewBodyBlocConsumer(),
       ),
