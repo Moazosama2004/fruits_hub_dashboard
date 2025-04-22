@@ -1,7 +1,7 @@
 import 'package:fruits_hub_dashboard/features/add_product/domain/entities/review_entity.dart';
 import 'package:image_picker/image_picker.dart';
 
-class AddProductInputEntity {
+class ProductEntity {
   final String name;
   final String code;
   final String description;
@@ -17,7 +17,7 @@ class AddProductInputEntity {
   final num ratingCount = 0;
   final List<ReviewEntity> reviews;
 
-  AddProductInputEntity({
+  ProductEntity({
     required this.name,
     required this.code,
     required this.description,

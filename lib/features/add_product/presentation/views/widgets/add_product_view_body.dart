@@ -8,7 +8,7 @@ import 'package:fruits_hub_dashboard/core/widgets/custom_button.dart';
 import 'package:fruits_hub_dashboard/core/widgets/custom_check_box.dart';
 import 'package:fruits_hub_dashboard/core/widgets/custom_text_form_field.dart';
 import 'package:fruits_hub_dashboard/core/widgets/image_field.dart';
-import 'package:fruits_hub_dashboard/features/add_product/domain/entities/add_product_input_entity.dart';
+import 'package:fruits_hub_dashboard/features/add_product/domain/entities/product_entity.dart';
 import 'package:fruits_hub_dashboard/features/add_product/presentation/manager/add_product_cubit/add_product_cubit.dart';
 import 'package:fruits_hub_dashboard/features/add_product/presentation/views/widgets/is_featured_box.dart';
 import 'package:fruits_hub_dashboard/features/add_product/presentation/views/widgets/is_organic_item_box.dart';
@@ -114,7 +114,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                   if (imageFile != null) {
                     if (formkey.currentState!.validate()) {
                       formkey.currentState!.save();
-                      AddProductInputEntity inputEntity = AddProductInputEntity(
+                      ProductEntity inputEntity = ProductEntity(
                         reviews: [],
                         name: name,
                         code: code,

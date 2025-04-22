@@ -1,9 +1,9 @@
-import 'package:fruits_hub_dashboard/features/add_product/domain/entities/add_product_input_entity.dart';
+import 'package:fruits_hub_dashboard/features/add_product/domain/entities/product_entity.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'review_model.dart';
 
-class AddProductModel {
+class ProductModel {
   final String name;
   final String code;
   final String description;
@@ -15,11 +15,12 @@ class AddProductModel {
   final bool isOrganic;
   final int numberOfCalories;
   final int unitAmount;
+  final int sellingCount;
   final num avgRating = 0;
   final num ratingCount = 0;
   final List<ReviewModel> reviews;
 
-  AddProductModel({
+  ProductModel({
     required this.name,
     required this.code,
     required this.description,
@@ -30,12 +31,13 @@ class AddProductModel {
     required this.isOrganic,
     required this.numberOfCalories,
     required this.unitAmount,
+    this.sellingCount = 0,
     this.imageUrl,
     required this.reviews,
   });
 
-  factory AddProductModel.fromEntity(AddProductInputEntity entity) {
-    return AddProductModel(
+  factory ProductModel.fromEntity(ProductEntity entity) {
+    return ProductModel(
       name: entity.name,
       code: entity.code,
       description: entity.description,
@@ -51,8 +53,8 @@ class AddProductModel {
     );
   }
 
-  factory AddProductModel.fromJson(Map<String, dynamic> json) {
-    return AddProductModel(
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
+    return ProductModel(
       name: json['name'],
       code: json['code'],
       description: json['description'],
@@ -74,6 +76,7 @@ class AddProductModel {
       'code': code,
       'description': description,
       'price': price,
+      'sellingCount': sellingCount,
       'isFeatured': isFeatured,
       'imageUrl': imageUrl,
       'expirationsMonths': expirationsMonths,
