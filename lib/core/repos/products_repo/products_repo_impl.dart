@@ -1,10 +1,29 @@
+import 'package:dartz/dartz.dart';
+import 'package:fruits_hub_dashboard/core/errors/failure.dart';
 import 'package:fruits_hub_dashboard/core/repos/products_repo/products_repo.dart';
+import 'package:fruits_hub_dashboard/core/services/database_service.dart';
+import 'package:fruits_hub_dashboard/core/services/firestore_service.dart';
+import 'package:fruits_hub_dashboard/core/utils/backend_end_point.dart';
+import 'package:fruits_hub_dashboard/features/add_product/data/models/add_product_input_model.dart';
 import 'package:fruits_hub_dashboard/features/add_product/domain/entities/add_product_input_entity.dart';
 
 class ProductsRepoImpl implements ProductsRepo {
+  final DatabaseService databaseService;
+
+  ProductsRepoImpl(this.databaseService);
+
   @override
-  Future<void> addProduct({required AddProductInputEntity inputEntity}) {
-    // TODO: implement addProduct
-    throw UnimplementedError();
+  Future<Either<Failure, void>> addProduct({
+    required AddProductInputEntity inputEntity,
+  }) async {
+    try {
+      await databaseService.addData(
+        path: BackendEndPoint.addProducts,
+        data: AddProductModel.fromEntity(inputEntity).toJson(),
+      );
+      return right(null);
+    } catch (e) {
+      return left(ServerFailure(errMessage: e.toString()));
+    }
   }
 }
