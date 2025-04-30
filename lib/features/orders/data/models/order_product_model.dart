@@ -1,8 +1,10 @@
+import 'package:fruits_hub_dashboard/features/orders/domain/entities/order_product_entity.dart';
+
 class OrderProductModel {
   final String name;
   final String imageUrl;
   final String code;
-  final num price;
+  final double price;
   final int quantity;
 
   OrderProductModel({
@@ -28,8 +30,18 @@ class OrderProductModel {
       name: json['name'] as String,
       imageUrl: json['imageUrl'] as String,
       code: json['code'] as String,
-      price: json['price'] as num,
+      price: json['price'] as double,
       quantity: json['quantity'] as int,
+    );
+  }
+
+  OrderProductEntity toEntity() {
+    return OrderProductEntity(
+      name: name,
+      imageUrl: imageUrl,
+      code: code,
+      price: price,
+      quantity: quantity,
     );
   }
 }
