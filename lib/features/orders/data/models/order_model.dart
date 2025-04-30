@@ -30,6 +30,17 @@ class OrderModel {
     };
   }
 
+  OrderEntity toEntity() {
+    return OrderEntity(
+      uId: uId,
+      totalPrice: totalPrice,
+      paymentMethod: paymentMethod,
+      shippingAddress: shippingAddressModel.toEntity(),
+      orderProducts:
+          orderProducts.map((product) => product.toEntity()).toList(),
+    );
+  }
+
   factory OrderModel.fromJson(Map<String, dynamic> json) {
     return OrderModel(
       uId: json['uId'] as String,

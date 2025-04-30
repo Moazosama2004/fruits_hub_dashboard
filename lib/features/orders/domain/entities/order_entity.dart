@@ -1,34 +1,23 @@
-// import 'package:fruits_hub_dashboard/features/orders/domain/entities/shipping_address_entity.dart';
+import 'order_product_entity.dart';
+import 'shipping_address_entity.dart';
 
-// class OrderEntity {
-//   final String uId;
-//   final CartEntity cartEntity;
-//   bool? payWithCash;
-//   ShippingAddressEntity shippingAddressEntity;
+class OrderEntity {
+  final double totalPrice;
+  final String uId;
+  // final String orderID;
+  final ShippingAddressEntity shippingAddress;
+  final List<OrderProductEntity> orderProducts;
+  final String paymentMethod;
+  // final OrderStatusEnum status;
+  OrderEntity({
+    required this.totalPrice,
+    required this.uId,
+    // required this.orderID,
+    // required this.status,
+    required this.shippingAddress,
+    required this.orderProducts,
+    required this.paymentMethod,
+  });
+}
 
-//   OrderEntity({
-//     required this.cartEntity,
-//     this.payWithCash,
-//     required this.shippingAddressEntity,
-//     required this.uId,
-//   });
-
-//   num calculateShippingCost() {
-//     return 30;
-//   }
-
-//   num calculateShippingDiscount() {
-//     return 0;
-//   }
-
-//   num calculateTotalPriceAfterDiscountAndShipping() {
-//     return cartEntity.calculateTotalPrice() +
-//         calculateShippingCost() -
-//         calculateShippingDiscount();
-//   }
-
-//   @override
-//   String toString() {
-//     return 'OrderEntity(uId: $uId, cartEntity: $cartEntity, payWithCash: $payWithCash, shippingAddressEntity: $shippingAddressEntity)';
-//   }
-// }
+// payment method
