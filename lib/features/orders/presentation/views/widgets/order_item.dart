@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:fruits_hub_dashboard/core/enums/order_enum.dart';
 import 'package:fruits_hub_dashboard/features/orders/data/models/order_model.dart';
 import 'package:fruits_hub_dashboard/features/orders/domain/entities/order_entity.dart';
 
@@ -27,29 +28,29 @@ class OrderItem extends StatelessWidget {
                     fontSize: 16,
                   ),
                 ),
-                // const Spacer(),
-                // // Order Status
-                // Container(
-                //   padding: const EdgeInsets.symmetric(
-                //     horizontal: 8,
-                //     vertical: 4,
-                //   ),
-                //   decoration: BoxDecoration(
-                //     color:
-                //         orderModel.status == OrderStatusEnum.pending
-                //             ? Colors.orange
-                //             : orderModel.status == OrderStatusEnum.accepted
-                //             ? Colors.green
-                //             : orderModel.status == OrderStatusEnum.delivered
-                //             ? Colors.blue
-                //             : Colors.red,
-                //     borderRadius: BorderRadius.circular(8),
-                //   ),
-                //   child: Text(
-                //     orderModel.status.name,
-                //     style: const TextStyle(fontSize: 14, color: Colors.white),
-                //   ),
-                // ),
+                const Spacer(),
+                // Order Status
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
+                  decoration: BoxDecoration(
+                    color:
+                        orderEntity.status == OrderStatusEnum.pending
+                            ? Colors.orange
+                            : orderEntity.status == OrderStatusEnum.accepted
+                            ? Colors.green
+                            : orderEntity.status == OrderStatusEnum.delivered
+                            ? Colors.blue
+                            : Colors.red,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    orderEntity.status.name,
+                    style: const TextStyle(fontSize: 14, color: Colors.white),
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 8),

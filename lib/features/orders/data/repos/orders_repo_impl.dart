@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:fruits_hub_dashboard/core/errors/failure.dart';
 import 'package:fruits_hub_dashboard/core/services/database_service.dart';
@@ -14,16 +16,21 @@ class OrdersRepoImpl implements OrdersRepo {
   @override
   Future<Either<Failure, List<OrderEntity>>> fetchOrders() async {
     try {
-      var response =
-          await databaseService.getData(path: BackendEndPoint.getOrdersData)
-              as Map<String, dynamic>;
+      var data = await databaseService.getData(
+        path: BackendEndPoint.getOrdersData,
+      );
+      log(data.toString());
       List<OrderEntity> orders =
-          (response as List<dynamic>)
-              .map((e) => OrderModel.fromJson(response).toEntity())
+          (data as List<dynamic>)
+              .map<OrderEntity>((e) => OrderModel.fromJson(e).toEntity())
               .toList();
+      log(orders.toString());
       return right(orders);
     } catch (e) {
-      return left(ServerFailure(errMessage: 'Failed to Fetch Data'));
+      log(e.toString());
+      return left(
+        ServerFailure(errMessage: 'Failed to Fetch Data ${e.toString()}'),
+      );
     }
   }
 }

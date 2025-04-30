@@ -27,11 +27,11 @@ class OrderProductModel {
 
   factory OrderProductModel.fromJson(Map<String, dynamic> json) {
     return OrderProductModel(
-      name: json['name'] as String,
-      imageUrl: json['imageUrl'] as String,
-      code: json['code'] as String,
-      price: json['price'] as double,
-      quantity: json['quantity'] as int,
+      name: json['name'],
+      code: json['code'],
+      imageUrl: json['imageUrl'],
+      price: (json['price'] as num).toDouble(),
+      quantity: json['quantity'],
     );
   }
 
