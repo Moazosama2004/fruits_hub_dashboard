@@ -6,7 +6,7 @@ import 'shipping_address_entity.dart';
 class OrderEntity {
   final double totalPrice;
   final String uId;
-  final String orderID;
+  final String orderId;
   final ShippingAddressEntity shippingAddress;
   final List<OrderProductEntity> orderProducts;
   final String paymentMethod;
@@ -15,7 +15,7 @@ class OrderEntity {
   OrderEntity({
     required this.totalPrice,
     required this.uId,
-    required this.orderID,
+    required this.orderId,
     required this.status,
     required this.shippingAddress,
     required this.orderProducts,

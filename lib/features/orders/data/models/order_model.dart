@@ -45,7 +45,7 @@ class OrderModel {
       shippingAddress: shippingAddressModel.toEntity(),
       orderProducts:
           orderProducts.map((product) => product.toEntity()).toList(),
-      orderID: orderId,
+      orderId: orderId,
     );
   }
 

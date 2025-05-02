@@ -23,7 +23,7 @@ class OrderActionButtons extends StatelessWidget {
             onPressed: () {
               context.read<UpdateOrderCubit>().updateOrder(
                 status: OrderStatusEnum.accepted,
-                orderId: orderEntity.orderID,
+                orderId: orderEntity.orderId,
               );
             },
             child: const Text('Accept'),
@@ -39,7 +39,7 @@ class OrderActionButtons extends StatelessWidget {
             onPressed: () {
               context.read<UpdateOrderCubit>().updateOrder(
                 status: OrderStatusEnum.delivered,
-                orderId: orderEntity.orderID,
+                orderId: orderEntity.orderId,
               );
             },
             child: const Text('Delivered'),
