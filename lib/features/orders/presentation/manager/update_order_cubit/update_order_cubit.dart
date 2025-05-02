@@ -9,7 +9,10 @@ class UpdateOrderCubit extends Cubit<UpdateOrderState> {
   UpdateOrderCubit(this.ordersRepo) : super(UpdateOrderInitial());
   final OrdersRepo ordersRepo;
 
-  updateData({required OrderStatusEnum status, required String orderId}) async {
+  updateOrder({
+    required OrderStatusEnum status,
+    required String orderId,
+  }) async {
     emit(UpdateOrderLoading());
     var result = await ordersRepo.updateOrder(status: status, orderId: orderId);
     result.fold(

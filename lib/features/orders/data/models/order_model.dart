@@ -10,9 +10,11 @@ class OrderModel {
   final ShippingAddressModel shippingAddressModel;
   final List<OrderProductModel> orderProducts;
   final String status;
+  final String orderId;
 
   OrderModel({
     required this.uId,
+    required this.orderId,
     required this.totalPrice,
     required this.paymentMethod,
     required this.shippingAddressModel,
@@ -23,6 +25,7 @@ class OrderModel {
   Map<String, dynamic> toJson() {
     return {
       'uId': uId,
+      'orderId': orderId,
       'totalPrice': totalPrice,
       'paymentMethod': paymentMethod,
       'shippingAddress': shippingAddressModel.toJson(),
@@ -42,14 +45,15 @@ class OrderModel {
       shippingAddress: shippingAddressModel.toEntity(),
       orderProducts:
           orderProducts.map((product) => product.toEntity()).toList(),
+      orderID: orderId,
     );
   }
 
   factory OrderModel.fromJson(Map<String, dynamic> json) => OrderModel(
     totalPrice: (json['totalPrice'] as num).toDouble(),
     uId: json['uId'],
-    // status: json['status'],
-    // orderID: json['orderId'],
+    status: json['status'],
+    orderId: json['orderId'],
     shippingAddressModel: ShippingAddressModel.fromJson(
       json['shippingAddress'],
     ),
@@ -57,7 +61,6 @@ class OrderModel {
       json['orderProducts'].map((e) => OrderProductModel.fromJson(e)),
     ),
     paymentMethod: json['paymentMethod'],
-    status: json['status'],
   );
 
   OrderStatusEnum fetchEnum() {
